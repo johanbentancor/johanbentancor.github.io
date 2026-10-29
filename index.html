@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Johan Bentancor · Estudiante de Informática</title>
+  <meta name="description" content="Portafolio de Johan Bentancor, estudiante de Informática en UTU (Uruguay). Disponible para pasantía.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --tinta: #0f172a;
+      --texto: #334155;
+      --suave: #64748b;
+      --papel: #f8f7f4;
+      --blanco: #ffffff;
+      --linea: #e5e3dd;
+      --acento: #1d4ed8;
+      --acento-2: #84cc16;
+      --sombra: 0 1px 2px rgba(15, 23, 42, .06), 0 8px 24px rgba(15, 23, 42, .06);
+      --radio: 14px;
+      --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--papel);
+      color: var(--texto);
+      font: 400 17px/1.65 Inter, system-ui, "Segoe UI", Arial, sans-serif;
+    }
+    h1, h2, h3 { font-family: "Space Grotesk", Inter, sans-serif; color: var(--tinta); line-height: 1.15; margin: 0; }
+    a { color: var(--acento); }
+    img { max-width: 100%; display: block; }
+    .contenedor { width: min(1080px, 100% - 32px); margin-inline: auto; }
+
+    /* Marca de datos a completar (se borra al final) */
+    .completar { background: #fef08a; color: #713f12; border-radius: 4px; padding: 0 4px; }
+
+    /* Navegación */
+    .nav {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(248, 247, 244, .88); backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--linea);
+    }
+    .nav .contenedor { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .logo { font: 700 18px "Space Grotesk", sans-serif; color: var(--tinta); text-decoration: none; }
+    .logo span { color: var(--acento); }
+    .nav ul { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; }
+    .nav ul a { color: var(--texto); text-decoration: none; font-size: 15px; font-weight: 500; }
+    .nav ul a:hover { color: var(--acento); }
+
+    /* Portada */
+    .portada { padding: 72px 0 56px; }
+    .portada .contenedor { display: grid; grid-template-columns: 1fr 260px; gap: 48px; align-items: center; }
+    .estado {
+      display: inline-flex; align-items: center; gap: 8px;
+      font: 500 13px var(--mono); color: var(--tinta);
+      background: var(--blanco); border: 1px solid var(--linea); border-radius: 999px; padding: 6px 14px;
+    }
+    .estado::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--acento-2); box-shadow: 0 0 0 4px rgba(132, 204, 22, .25); }
+    .portada h1 { font-size: clamp(40px, 7vw, 68px); margin: 20px 0 12px; letter-spacing: -.02em; }
+    .portada .rol { font-size: clamp(18px, 2.4vw, 22px); color: var(--tinta); font-weight: 500; margin: 0 0 16px; }
+    .portada .rol b { color: var(--acento); font-weight: 600; }
+    .portada p.intro { max-width: 600px; margin: 0 0 28px; }
+    .botones { display: flex; flex-wrap: wrap; gap: 12px; }
+    .boton {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 20px; border-radius: 10px; font-weight: 600; font-size: 15px; text-decoration: none;
+      border: 1px solid var(--tinta); transition: transform .15s, background .15s;
+    }
+    .boton:hover { transform: translateY(-2px); }
+    .boton.principal { background: var(--tinta); color: var(--blanco); }
+    .boton.secundario { background: transparent; color: var(--tinta); }
+    .foto {
+      width: 260px; aspect-ratio: 1; border-radius: 24px; overflow: hidden;
+      background: linear-gradient(135deg, #1d4ed8, #0f172a);
+      display: grid; place-items: center; color: #fff; font: 700 72px "Space Grotesk", sans-serif;
+      box-shadow: var(--sombra); position: relative;
+    }
+    .foto::after { content: ""; position: absolute; inset: auto -20px -20px auto; width: 90px; height: 90px; border-radius: 50%; background: var(--acento-2); opacity: .9; }
+    .foto img { width: 100%; height: 100%; object-fit: cover; }
+    .foto:has(img)::after { display: none; }
+
+    /* Datos rápidos */
+    .datos { display: grid; grid-template-columns: repeat(4, 1fr); border-block: 1px solid var(--linea); }
+    .dato { padding: 22px 20px; border-right: 1px solid var(--linea); }
+    .dato:last-child { border-right: 0; }
+    .dato b { display: block; font: 700 22px "Space Grotesk", sans-serif; color: var(--tinta); }
+    .dato span { font-size: 14px; color: var(--suave); }
+
+    /* Secciones */
+    section.bloque { padding: 72px 0; }
+    .etiqueta { font: 500 13px var(--mono); color: var(--acento); text-transform: uppercase; letter-spacing: .08em; margin: 0 0 8px; }
+    section.bloque h2 { font-size: clamp(28px, 4vw, 38px); margin-bottom: 36px; letter-spacing: -.01em; }
+
+    /* Proyectos */
+    .proyecto {
+      display: grid; grid-template-columns: 1.1fr 1fr; gap: 0;
+      background: var(--blanco); border: 1px solid var(--linea); border-radius: var(--radio);
+      overflow: hidden; box-shadow: var(--sombra); margin-bottom: 28px;
+    }
+    .proyecto .captura { background: #1b1d22; display: flex; align-items: center; }
+    .proyecto .captura img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+    .proyecto .info { padding: 32px; }
+    .proyecto h3 { font-size: 26px; margin-bottom: 6px; }
+    .proyecto .tipo { font: 500 13px var(--mono); color: var(--suave); margin: 0 0 16px; }
+    .proyecto ul { padding-left: 20px; margin: 0 0 20px; }
+    .proyecto li { margin-bottom: 6px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0 !important; margin: 0 0 22px !important; }
+    .chips li { font: 500 12.5px var(--mono); background: #eef2ff; color: var(--acento); border-radius: 6px; padding: 4px 10px; margin: 0 !important; }
+    .enlaces { display: flex; flex-wrap: wrap; gap: 18px; font-weight: 600; font-size: 15px; }
+    .enlaces a { text-decoration: none; }
+    .enlaces a:hover { text-decoration: underline; }
+
+    /* Habilidades */
+    .grupos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .grupo { background: var(--blanco); border: 1px solid var(--linea); border-radius: var(--radio); padding: 26px; }
+    .grupo h3 { font-size: 18px; margin-bottom: 14px; }
+    .grupo ul { list-style: none; padding: 0; margin: 0; }
+    .grupo li { padding: 7px 0; border-bottom: 1px dashed var(--linea); display: flex; justify-content: space-between; gap: 12px; }
+    .grupo li:last-child { border-bottom: 0; }
+    .grupo li small { color: var(--suave); font-size: 13px; }
+
+    /* Formación */
+    .linea-tiempo { border-left: 2px solid var(--linea); padding-left: 28px; display: grid; gap: 28px; }
+    .hito { position: relative; }
+    .hito::before { content: ""; position: absolute; left: -36px; top: 6px; width: 14px; height: 14px; border-radius: 50%; background: var(--papel); border: 3px solid var(--acento); }
+    .hito .fecha { font: 500 13px var(--mono); color: var(--suave); }
+    .hito h3 { font-size: 20px; margin: 4px 0 6px; }
+    .hito p { margin: 0; }
+
+    /* Contacto */
+    .contacto { background: var(--tinta); color: #cbd5e1; border-radius: 24px; padding: 56px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center; }
+    .contacto h2 { color: #fff; margin-bottom: 14px !important; }
+    .contacto .etiqueta { color: var(--acento-2); }
+    .contacto ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+    .contacto li a {
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+      color: #fff; text-decoration: none; padding: 14px 18px; border: 1px solid #334155; border-radius: 12px;
+      transition: border-color .15s, background .15s;
+    }
+    .contacto li a:hover { border-color: var(--acento-2); background: #1e293b; }
+    .contacto li small { font: 500 12px var(--mono); color: #94a3b8; text-transform: uppercase; }
+
+
+    /* Proyecto destacado, terminal y miniaturas */
+    .destacado { border: 2px solid var(--acento); }
+    .sello { display: inline-block; font: 500 12px var(--mono); background: var(--acento-2); color: #1a2e05; border-radius: 6px; padding: 3px 10px; margin-bottom: 12px; }
+    .terminal { background: #0b1120 !important; padding: 26px; align-items: center; }
+    .terminal pre { margin: 0; color: #cbd5e1; font: 500 13px/1.7 var(--mono); white-space: pre; overflow-x: auto; max-width: 100%; }
+    .t-p { color: var(--acento-2); }
+    .t-ok { color: #4ade80; }
+    .subtitulo { font-size: 22px; margin: 48px 0 20px; }
+    .minis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .mini { background: var(--blanco); border: 1px solid var(--linea); border-radius: var(--radio); overflow: hidden; display: flex; flex-direction: column; }
+    .mini img { aspect-ratio: 16 / 10; object-fit: cover; object-position: top; border-bottom: 1px solid var(--linea); }
+    .mini > div { padding: 20px; }
+    .mini h4 { font: 700 18px "Space Grotesk", sans-serif; color: var(--tinta); margin: 0 0 6px; }
+    .mini p { font-size: 15px; margin: 0 0 14px; }
+    .mini .chips { margin: 0 !important; }
+
+    footer { padding: 32px 0 48px; font-size: 14px; color: var(--suave); text-align: center; }
+
+    /* Teléfono */
+    @media (max-width: 820px) {
+      .nav ul { display: none; }
+      .portada { padding: 40px 0 36px; }
+      .portada .contenedor { grid-template-columns: 1fr; gap: 28px; }
+      .foto { width: 140px; font-size: 44px; border-radius: 20px; order: -1; }
+      .foto::after { width: 50px; height: 50px; inset: auto -12px -12px auto; }
+      .datos { grid-template-columns: 1fr 1fr; }
+      .dato:nth-child(2) { border-right: 0; }
+      .dato:nth-child(-n+2) { border-bottom: 1px solid var(--linea); }
+      section.bloque { padding: 52px 0; }
+      .proyecto { grid-template-columns: 1fr; }
+      .proyecto .info { padding: 24px; }
+      .grupos, .minis { grid-template-columns: 1fr; }
+      .terminal pre { font-size: 11px; }
+      .contacto { grid-template-columns: 1fr; padding: 32px 22px; border-radius: 18px; }
+      .botones .boton { flex: 1 1 auto; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="contenedor">
+      <a class="logo" href="#">Johan<span>.</span></a>
+      <ul>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#habilidades">Habilidades</a></li>
+        <li><a href="#formacion">Formación</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="portada">
+    <div class="contenedor">
+      <div>
+        <span class="estado">Disponible para pasantía · 2027</span>
+        <h1>Johan Bentancor</h1>
+        <p class="rol">Estudiante de <b>Informática</b> en UTU · Desarrollo web</p>
+        <p class="intro">Tengo 16 años y curso el Bachillerato en Informática; en 2027 hago el último año. Programo en Java y JavaScript, trabajo con bases de datos MySQL y servidores Linux, y tengo mi propio emprendimiento de páginas web. Busco mi primera pasantía para aportar y aprender en un equipo real.</p>
+        <div class="botones">
+          <a class="boton principal" href="cv.pdf" download>Descargar CV (PDF)</a>
+          <a class="boton secundario" href="#proyectos">Ver proyectos</a>
+        </div>
+      </div>
+      <div class="foto" aria-label="Foto de perfil">
+        <img src="img/foto.jpg" alt="Foto de Johan Bentancor">
+      </div>
+    </div>
+  </header>
+
+  <div class="contenedor">
+    <div class="datos">
+      <div class="dato"><b>UTU</b><span>Bachillerato en Informática</span></div>
+      <div class="dato"><b>1</b><span>Emprendimiento propio</span></div>
+      <div class="dato"><b>7</b><span>Proyectos realizados</span></div>
+      <div class="dato"><b>Solymar</b><span>Canelones, Uruguay</span></div>
+    </div>
+  </div>
+
+  <main>
+    <section class="bloque" id="proyectos">
+      <div class="contenedor">
+        <p class="etiqueta">// proyectos</p>
+        <h2>Lo que construí</h2>
+
+        <article class="proyecto destacado">
+          <div class="captura"><img src="img/jbm.jpg" alt="Portada de JbM STUDIO: «Webs que venden mientras tú atiendes tu negocio»" loading="lazy"></div>
+          <div class="info">
+            <span class="sello">Emprendimiento propio · Publicado</span>
+            <h3>JbM STUDIO</h3>
+            <p class="tipo">Plataforma web + negocio · 2026</p>
+            <ul>
+              <li>Mi propio emprendimiento: ofrezco <b>páginas web y códigos QR</b> para negocios de Uruguay.</li>
+              <li>Hice la plataforma completa: sitio de ventas, <b>panel de administración</b> y backend <b>serverless</b> con Netlify Functions.</li>
+              <li>Sistema de pedidos completo: el cliente encarga, revisa una vista previa, comenta y descarga al confirmar el pago.</li>
+              <li>Generación automática de QR (carta digital, WhatsApp, Wi-Fi) y estadísticas de visitas por origen.</li>
+            </ul>
+            <ul class="chips"><li>JavaScript</li><li>Node.js</li><li>Netlify Functions</li><li>HTML</li><li>CSS</li></ul>
+            <div class="enlaces">
+              <a href="https://jbm-studio-web.netlify.app" target="_blank" rel="noopener">Visitar el sitio →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="proyecto">
+          <div class="captura"><img src="img/clinica.jpg" alt="Portada del sistema ClinicaVida: «La salud que mereces hoy»" loading="lazy"></div>
+          <div class="info">
+            <h3>ClinicaVida</h3>
+            <p class="tipo">Sistema de gestión · 2026 · Proyecto final de Programación Avanzada (UTU)</p>
+            <ul>
+              <li>Gestión de un centro médico: pacientes, médicos, medicamentos, citas e historial clínico.</li>
+              <li>Arquitectura en capas <b>Modelo – DAO – Vista</b> en <b>Java</b> con <b>JDBC</b> y <b>MySQL</b>, sin frameworks.</li>
+              <li>Módulo de pacientes con interfaz web conectada a la base de datos mediante un servidor HTTP propio en Java.</li>
+              <li>Base de datos relacional diseñada desde cero, con claves y migraciones en SQL.</li>
+            </ul>
+            <ul class="chips"><li>Java</li><li>JDBC</li><li>MySQL</li><li>SQL</li><li>Swing</li><li>JavaScript</li></ul>
+          </div>
+        </article>
+
+        <article class="proyecto">
+          <div class="captura terminal" aria-label="Fragmento de terminal del servidor Linux">
+<pre><span class="t-p">sysadmin@srv-tienda:~$</span> lsblk
+sda    20G  disk  /
+sdb    10G  disk
+ ├─vg_tienda-lv_db        3G  /var/lib/mysql
+ ├─vg_tienda-lv_catalogo  2G  /srv/catalogo
+ └─vg_tienda-lv_backup    3G  /backup
+<span class="t-p">sysadmin@srv-tienda:~$</span> crontab -l
+30 2 * * *   backup-tienda.sh
+*/5 * * * *  check-services.sh
+<span class="t-p">sysadmin@srv-tienda:~$</span> sudo ufw status
+22/tcp   ALLOW   <span class="t-ok">✓</span>
+67/udp   ALLOW   <span class="t-ok">✓</span></pre>
+          </div>
+          <div class="info">
+            <h3>Level Up Gaming</h3>
+            <p class="tipo">Infraestructura · 2026 · Proyecto final de Sistemas Operativos (en equipo)</p>
+            <ul>
+              <li>Infraestructura de una tienda gamer en <b>VirtualBox</b>: servidor <b>Ubuntu Server</b> y dos cajas (Linux y Windows).</li>
+              <li>Discos con <b>LVM</b>, usuarios y grupos con permisos mínimos, y red con IP fija, <b>DHCP</b> y firewall.</li>
+              <li>Scripts en <b>Bash</b> programados con cron: respaldo diario de la base de datos y vigilancia de servicios.</li>
+              <li>Base de datos de la tienda modelada (MER) y creada en SQL.</li>
+            </ul>
+            <ul class="chips"><li>Linux</li><li>Bash</li><li>LVM</li><li>Redes</li><li>VirtualBox</li><li>MariaDB</li></ul>
+          </div>
+        </article>
+
+        <article class="proyecto">
+          <div class="captura"><img src="img/ajedrez.jpg" alt="Asistente de Ajedrez: tablero y panel de controles" loading="lazy"></div>
+          <div class="info">
+            <h3>Asistente de Ajedrez</h3>
+            <p class="tipo">Aplicación web · 2026 · Proyecto personal</p>
+            <ul>
+              <li>Integra el motor <b>Stockfish</b> en un Web Worker para analizar posiciones sin congelar la página.</li>
+              <li>Descarga partidas desde las <b>APIs de chess.com y lichess</b> y marca los errores de cada jugada.</li>
+              <li>Ejercicios, entrenador de aperturas y editor de posiciones. Funciona sin internet y en teléfono.</li>
+            </ul>
+            <ul class="chips"><li>JavaScript</li><li>Web Workers</li><li>APIs REST</li><li>Python</li></ul>
+          </div>
+        </article>
+
+        <h3 class="subtitulo">Otros proyectos</h3>
+        <div class="minis">
+          <article class="mini">
+            <img src="img/dohyo.jpg" alt="Menú del juego Dohyo Dash" loading="lazy">
+            <div>
+              <h4>Dohyo Dash</h4>
+              <p>Juego de sumo para 2 jugadores o contra la CPU, con controles táctiles. Preparado para publicar en portales de juegos web.</p>
+              <ul class="chips"><li>Canvas</li><li>JavaScript</li><li>Node.js</li></ul>
+            </div>
+          </article>
+          <article class="mini">
+            <img src="img/nova.jpg" alt="Reproductor de música NOVA" loading="lazy">
+            <div>
+              <h4>NOVA Player</h4>
+              <p>Reproductor de música de escritorio para Windows con biblioteca, favoritos y arrastrar y soltar archivos.</p>
+              <ul class="chips"><li>Electron</li><li>JavaScript</li></ul>
+            </div>
+          </article>
+          <article class="mini">
+            <img src="img/cosmos.jpg" alt="Portada del sitio Cosmos sobre el Sistema Solar" loading="lazy">
+            <div>
+              <h4>Cosmos</h4>
+              <p>Sitio de 4 páginas sobre el Sistema Solar, adaptable a teléfono. Proyecto final de Experiencia de Usuario.</p>
+              <ul class="chips"><li>HTML5</li><li>CSS3</li><li>UX</li></ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="bloque" id="habilidades" style="padding-top:0">
+      <div class="contenedor">
+        <p class="etiqueta">// habilidades</p>
+        <h2>Con qué trabajo</h2>
+        <div class="grupos">
+          <div class="grupo">
+            <h3>Programación</h3>
+            <ul>
+              <li>JavaScript <small>web, Node.js</small></li>
+              <li>Java <small>POO, JDBC, Swing</small></li>
+              <li>HTML5 y CSS3 <small>responsive</small></li>
+              <li>Python <small>scripts</small></li>
+            </ul>
+          </div>
+          <div class="grupo">
+            <h3>Datos y sistemas</h3>
+            <ul>
+              <li>MySQL / MariaDB <small>SQL, modelo MER</small></li>
+              <li>Linux <small>Ubuntu Server, Bash</small></li>
+              <li>Redes <small>IP, DHCP, firewall</small></li>
+              <li>VirtualBox <small>máquinas virtuales</small></li>
+            </ul>
+          </div>
+          <div class="grupo">
+            <h3>Herramientas e idiomas</h3>
+            <ul>
+              <li>Git <small>control de versiones</small></li>
+              <li>Netlify <small>publicación web</small></li>
+              <li>Cisco Packet Tracer</li>
+              <li>Inglés <small>intermedio (B1)</small></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bloque" id="formacion" style="padding-top:0">
+      <div class="contenedor">
+        <p class="etiqueta">// formación</p>
+        <h2>Formación y experiencia</h2>
+        <div class="linea-tiempo">
+          <div class="hito">
+            <span class="fecha">2026 — actualidad</span>
+            <h3>Creador de JbM STUDIO</h3>
+            <p>Diseñé, programé y publiqué la plataforma con la que ofrezco páginas web y códigos QR para negocios.</p>
+          </div>
+          <div class="hito">
+            <span class="fecha">2025 — 2027 (en curso)</span>
+            <h3>Bachillerato Tecnológico en Informática</h3>
+            <p>UTU El Pinar, Canelones. Último año en 2027. Programación Avanzada, Bases de Datos, Sistemas Operativos, Redes y Experiencia de Usuario.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bloque" id="contacto" style="padding-top:0">
+      <div class="contenedor">
+        <div class="contacto">
+          <div>
+            <p class="etiqueta">// contacto</p>
+            <h2>¿Tenés una pasantía disponible?</h2>
+            <p>Disponible de 15:00 a 20:00. Respondo rápido por WhatsApp.</p>
+          </div>
+          <ul>
+            <li><a href="https://wa.me/59897286001" target="_blank" rel="noopener">097 286 001<small>WhatsApp</small></a></li>
+            <li><a href="https://github.com/johanbentancor" target="_blank" rel="noopener">github.com/johanbentancor<small>GitHub</small></a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2026 Johan Bentancor · Hecho a mano con HTML, CSS y JavaScript</footer>
+</body>
+</html>

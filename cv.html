@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV · Johan Bentancor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    @page { size: A4; margin: 0; }
+    :root { --tinta: #0f172a; --texto: #334155; --suave: #64748b; --acento: #1d4ed8; --lima: #84cc16; --linea: #e2e8f0; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: #e5e7eb; }
+    body { font: 400 10pt/1.45 Inter, "Segoe UI", Arial, sans-serif; color: var(--texto); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .hoja { width: 210mm; min-height: 297mm; margin: 24px auto; background: #fff; display: grid; grid-template-columns: 64mm 1fr; box-shadow: 0 10px 40px rgba(0,0,0,.12); }
+    h1, h2, h3 { font-family: "Space Grotesk", Inter, sans-serif; color: var(--tinta); margin: 0; line-height: 1.15; }
+    a { color: inherit; text-decoration: none; }
+    .completar { background: #fef08a; color: #713f12; border-radius: 3px; padding: 0 3px; }
+
+    /* Columna lateral */
+    .lateral { background: var(--tinta); color: #cbd5e1; padding: 14mm 8mm 12mm; }
+    .foto { width: 34mm; height: 34mm; border-radius: 6mm; margin-bottom: 7mm; background: linear-gradient(135deg, #1d4ed8, #1e293b); display: grid; place-items: center; color: #fff; font: 700 22pt "Space Grotesk", sans-serif; overflow: hidden; border: 2px solid var(--lima); }
+    .foto img { width: 100%; height: 100%; object-fit: cover; }
+    .lateral h2 { color: #fff; font-size: 9pt; text-transform: uppercase; letter-spacing: .12em; margin: 7mm 0 3mm; padding-bottom: 1.5mm; border-bottom: 1px solid #334155; }
+    .lateral h2:first-of-type { margin-top: 0; }
+    .lateral ul { list-style: none; padding: 0; margin: 0; }
+    .lateral li { margin-bottom: 2.2mm; font-size: 9pt; }
+    .lateral li b { display: block; color: #fff; font-weight: 600; font-size: 9pt; }
+    .lateral li span.det { color: #94a3b8; font-size: 8.3pt; }
+    .contacto li { word-break: break-word; }
+    .contacto small { display: block; color: var(--lima); font-size: 7.5pt; text-transform: uppercase; letter-spacing: .08em; }
+
+    /* Columna principal */
+    .principal { padding: 14mm 12mm 12mm 11mm; }
+    .cabecera h1 { font-size: 26pt; letter-spacing: -.01em; }
+    .cabecera .rol { font-size: 11.5pt; color: var(--acento); font-weight: 600; margin: 2mm 0 3mm; }
+    .estado { display: inline-block; font-size: 8.5pt; font-weight: 600; color: #1a2e05; background: #ecfccb; border: 1px solid var(--lima); border-radius: 20px; padding: 1mm 3.5mm; }
+    .principal h2 { font-size: 11pt; text-transform: uppercase; letter-spacing: .1em; color: var(--acento); margin: 6.5mm 0 3mm; display: flex; align-items: center; gap: 3mm; }
+    .principal h2::after { content: ""; flex: 1; height: 1px; background: var(--linea); }
+    .perfil { margin: 0; }
+    .item { margin-bottom: 3.6mm; break-inside: avoid; }
+    .item-cab { display: flex; justify-content: space-between; align-items: baseline; gap: 4mm; }
+    .item h3 { font-size: 10.5pt; }
+    .item .fecha { font-size: 8.5pt; color: var(--suave); white-space: nowrap; }
+    .item .sub { font-size: 8.8pt; color: var(--suave); margin: .5mm 0 1.2mm; }
+    .item ul { margin: 0; padding-left: 4.5mm; }
+    .item li { margin-bottom: .6mm; }
+    .tec { font-size: 8.3pt; color: var(--acento); font-weight: 500; margin-top: 1mm; }
+
+    @media print {
+      html, body { background: #fff; }
+      .hoja { margin: 0; box-shadow: none; height: 297mm; overflow: hidden; }
+    }
+    @media screen and (max-width: 820px) {
+      .hoja { width: auto; min-height: 0; margin: 0; grid-template-columns: 1fr; }
+      .lateral, .principal { padding: 24px 16px; }
+      .principal { order: -1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hoja">
+    <aside class="lateral">
+      <div class="foto">
+        <img src="img/foto.jpg" alt="Foto de Johan Bentancor">
+      </div>
+
+      <h2>Contacto</h2>
+      <ul class="contacto">
+        <li><small>Teléfono</small>097 286 001</li>
+        <li><small>Ubicación</small>Solymar, Canelones</li>
+        <li><small>Portafolio</small><a href="https://johanbentancor.github.io">johanbentancor.github.io</a></li>
+        <li><small>GitHub</small><a href="https://github.com/johanbentancor">github.com/johanbentancor</a></li>
+      </ul>
+
+      <h2>Habilidades</h2>
+      <ul>
+        <li><b>Programación</b><span class="det">JavaScript, Java, HTML5, CSS3, Python</span></li>
+        <li><b>Bases de datos</b><span class="det">MySQL, MariaDB, SQL, modelo MER, JDBC</span></li>
+        <li><b>Sistemas</b><span class="det">Linux (Ubuntu Server), Bash, cron, LVM, Windows</span></li>
+        <li><b>Redes</b><span class="det">IP, DHCP, firewall (ufw), SSH, Cisco Packet Tracer</span></li>
+        <li><b>Herramientas</b><span class="det">Git, VS Code, VirtualBox, Netlify, Node.js</span></li>
+      </ul>
+
+      <h2>Idiomas</h2>
+      <ul>
+        <li><b>Español</b><span class="det">Nativo</span></li>
+        <li><b>Inglés</b><span class="det">Intermedio (B1) · prueba de nivel UTU</span></li>
+      </ul>
+
+      <h2>Datos</h2>
+      <ul>
+        <li><b>Edad</b><span class="det">16 años</span></li>
+        <li><b>Disponibilidad</b><span class="det">Pasantía, de 15:00 a 20:00</span></li>
+      </ul>
+    </aside>
+
+    <main class="principal">
+      <header class="cabecera">
+        <h1>Johan Bentancor</h1>
+        <p class="rol">Estudiante de Informática · Desarrollo web y software</p>
+        <span class="estado">● Disponible para pasantía</span>
+      </header>
+
+      <h2>Perfil</h2>
+      <p class="perfil">Estudiante del Bachillerato en Informática de UTU (último año en 2027), con proyectos reales en Java, JavaScript, bases de datos MySQL y servidores Linux. Creé y publiqué mi propio emprendimiento de páginas web y códigos QR. Aprendo rápido, trabajo con autonomía y busco mi primera pasantía para crecer en un equipo profesional.</p>
+
+      <h2>Emprendimiento</h2>
+      <div class="item">
+        <div class="item-cab"><h3>Creador y desarrollador · JbM STUDIO</h3><span class="fecha">2026 — actualidad</span></div>
+        <p class="sub">Emprendimiento propio · jbm-studio-web.netlify.app</p>
+        <ul>
+          <li>Plataforma para ofrecer páginas web y códigos QR a negocios de Uruguay, diseñada y programada por mí.</li>
+          <li>Panel de administración y backend serverless: pedidos, vista previa para el cliente, generación de QR y entrega al confirmar el pago.</li>
+        </ul>
+      </div>
+
+      <h2>Proyectos</h2>
+      <div class="item">
+        <div class="item-cab"><h3>ClinicaVida · Sistema de gestión médica</h3><span class="fecha">2026</span></div>
+        <ul>
+          <li>Gestión de pacientes, médicos, medicamentos, citas e historial clínico, con arquitectura Modelo – DAO – Vista.</li>
+          <li>Base de datos MySQL diseñada desde cero e interfaz web conectada por un servidor HTTP en Java.</li>
+        </ul>
+        <p class="tec">Java · JDBC · MySQL · Swing · JavaScript</p>
+      </div>
+      <div class="item">
+        <div class="item-cab"><h3>Level Up Gaming · Infraestructura Linux (en equipo)</h3><span class="fecha">2026</span></div>
+        <ul>
+          <li>Servidor Ubuntu y puestos de venta en VirtualBox: discos LVM, usuarios con permisos mínimos, red con DHCP y firewall.</li>
+          <li>Scripts en Bash con cron para respaldo diario de la base de datos y control de servicios.</li>
+        </ul>
+        <p class="tec">Linux · Bash · LVM · MariaDB · Redes</p>
+      </div>
+      <div class="item">
+        <div class="item-cab"><h3>Asistente de Ajedrez · Aplicación web</h3><span class="fecha">2026</span></div>
+        <ul>
+          <li>Motor Stockfish en un Web Worker y análisis de partidas descargadas de las APIs de chess.com y lichess.</li>
+        </ul>
+        <p class="tec">JavaScript · Web Workers · APIs REST</p>
+      </div>
+      <div class="item">
+        <div class="item-cab"><h3>Otros</h3><span class="fecha">2026</span></div>
+        <ul>
+          <li><b>Dohyo Dash</b>, juego web en Canvas · <b>NOVA</b>, reproductor de música de escritorio con Electron · <b>Cosmos</b>, sitio responsive en HTML5 y CSS3.</li>
+        </ul>
+      </div>
+
+      <h2>Formación</h2>
+      <div class="item">
+        <div class="item-cab"><h3>Bachillerato Tecnológico en Informática</h3><span class="fecha">2025 — 2027</span></div>
+        <p class="sub">UTU El Pinar, Canelones · Cursando último año en 2027</p>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
